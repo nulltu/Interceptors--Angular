@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {UsuariosService} from "./services/usuarios.service";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'interceptorApp';
+  constructor( private  usuariosService: UsuariosService) {
+    this.usuariosService.obtenerUsuario()
+      .subscribe( resp => {
+        console.log(resp);
+      },(err) => {
+        console.log('error en el appComponent')
+      })
+  }
 }
